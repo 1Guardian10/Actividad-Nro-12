@@ -1,0 +1,8 @@
+---
+- hosts: innovasys
+  become: yes
+  vars:
+    nombre_empresa: "InnovaSys"
+  roles:
+    - apache
+    - samba

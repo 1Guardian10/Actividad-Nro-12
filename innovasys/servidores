@@ -1,0 +1,2 @@
+[innovasys]
+servidor-innovasys ansible_host=192.168.10.100 ansible_user=operador

@@ -1,0 +1,43 @@
+---
+- name: Instalar Samba
+  ansible.builtin.apt:
+    name: samba
+    state: present
+    update_cache: yes
+
+- name: Crear grupo desarrolladores
+  ansible.builtin.group:
+    name: desarrolladores
+    state: present
+
+- name: Crear usuario devuser1
+  ansible.builtin.user:
+    name: devuser1
+    group: desarrolladores
+    shell: /usr/sbin/nologin
+    state: present
+
+- name: Crear directorio compartido
+  ansible.builtin.file:
+    path: /srv/samba/proyectos
+    state: directory
+    owner: root
+    group: desarrolladores
+    mode: '2775'
+
+- name: Configurar contraseña Samba para devuser1
+  ansible.builtin.shell: (echo "innova.2025"; echo "innova.2025") | smbpasswd -s -a devuser1
+  args:
+    creates: /var/lib/samba/private/devuser1.tdb
+
+- name: Configurar smb.conf
+  ansible.builtin.template:
+    src: smb.conf.j2
+    dest: /etc/samba/smb.conf
+  notify: Reiniciar Samba
+
+- name: Asegurar que Samba esté activo
+  ansible.builtin.service:
+    name: smbd
+    state: started
+    enabled: yes

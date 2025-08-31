@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Bienvenidos a {{ nombre_empresa }}</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #1e3c72, #2a5298);
+        color: #ffffff;
+        text-align: center;
+        padding: 50px;
+      }
+      h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+      }
+      p {
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+      .card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 30px;
+        display: inline-block;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Bienvenidos a la Intranet de {{ nombre_empresa }}</h1>
+      <p>Conectando ideas, proyectos y personas.</p>
+    </div>
+  </body>
+</html>

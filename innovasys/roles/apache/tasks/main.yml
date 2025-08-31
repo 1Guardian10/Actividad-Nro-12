@@ -1,0 +1,19 @@
+---
+- name: Instalar Apache2
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Deploy página de bienvenida
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+  notify: Reiniciar Apache
+
+- name: Asegurar que Apache está corriendo
+  ansible.builtin.service:
+    name: apache2
+    state: started
+    enabled: yes
+
